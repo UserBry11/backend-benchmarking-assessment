@@ -8,7 +8,7 @@
     for an arbitrary list of strings.
 
 """
-__author__ = "???"
+__author__ = "Bryan is fixing this code"
 
 import sys
 
@@ -24,7 +24,7 @@ def alphabetize(string):
         abc
 
     """
-    return "".join(sorted(string.lower()))
+    return "".join(sorted(string))
 
 
 def find_anagrams(words):
@@ -39,20 +39,45 @@ def find_anagrams(words):
         {'dgo': ['dog'], 'act': ['cat', 'act']}
 
     """
-    anagrams = {
-        alphabetize(word): [
-            w for w in words
-            if alphabetize(w) == alphabetize(word)]
-        for word in words}
+    # anagrams = {
+    #     alphabetize(word): [w for w in words if alphabetize(w) == alphabetize(word)] for word in words}
+    # return anagrams
+
+    # words2 = []
+    # print(words2)
+    # for word in words:
+    #     words2.append(alphabetize(word))
+
+    # for x in words:
+    #     if x in words2:
+    #         append.()
+
+    anagrams = {}
+    for word in words:
+        bear = []
+        # apple = alphabetize(word)
+        apple = "".join(sorted(word))
+
+        for x in words:
+            # car = alphabetize(x)
+            car = "".join(sorted(x))
+            if apple == car:
+                bear.append(x)
+        # print(bear)
+        anagrams[apple] = bear
+
+    # print(anagrams)
+
     return anagrams
+
 
 
 if __name__ == "__main__":
     # run find anagrams of first argument
     if len(sys.argv) < 2:
-        print "Please specify a word file!"
+        print("Please specify a word file!")
         sys.exit(1)
     else:
         with open(sys.argv[1], 'r') as handle:
             words = handle.read().split()
-            print find_anagrams(words)
+            find_anagrams(words)
